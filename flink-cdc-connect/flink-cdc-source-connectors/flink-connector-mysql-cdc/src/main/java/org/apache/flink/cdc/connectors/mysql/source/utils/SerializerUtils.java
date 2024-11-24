@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mysql.source.utils;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.apache.flink.cdc.connectors.mysql.source.offset.BinlogOffset;
 import org.apache.flink.cdc.connectors.mysql.source.offset.BinlogOffsetKind;
 import org.apache.flink.cdc.connectors.mysql.source.offset.BinlogOffsetSerializer;
@@ -107,6 +108,7 @@ public class SerializerUtils {
         try (final ByteArrayInputStream bis =
                         new ByteArrayInputStream(HexConverter.convertFromHex(serialized));
                 ObjectInputStream ois = new ObjectInputStream(bis)) {
+            ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
             return (Object[]) ois.readObject();
         } catch (Exception e) {
             throw new DebeziumException(
