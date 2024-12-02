@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mysql.source;
 
+import java.security.SecureRandom;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
@@ -971,7 +972,7 @@ public class NewlyAddedTableITCase extends MySqlSourceTestBase {
     }
 
     private String getServerId() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int serverId = random.nextInt(100) + 5400;
         return serverId + "-" + (serverId + DEFAULT_PARALLELISM);
     }

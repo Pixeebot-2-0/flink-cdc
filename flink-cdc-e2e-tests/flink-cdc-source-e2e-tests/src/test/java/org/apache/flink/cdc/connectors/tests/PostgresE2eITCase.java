@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.tests;
 
+import java.security.SecureRandom;
 import org.apache.flink.cdc.common.test.utils.JdbcProxy;
 import org.apache.flink.cdc.common.test.utils.TestUtils;
 import org.apache.flink.cdc.connectors.tests.utils.FlinkContainerTestEnvironment;
@@ -109,7 +110,7 @@ public class PostgresE2eITCase extends FlinkContainerTestEnvironment {
     }
 
     public static String getSlotName(String prefix) {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int id = random.nextInt(9000);
         return prefix + id;
     }

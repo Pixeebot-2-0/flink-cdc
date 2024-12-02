@@ -18,6 +18,7 @@
 package org.apache.flink.cdc.connectors.mongodb.utils;
 
 import com.github.dockerjava.api.command.InspectContainerResponse;
+import java.security.SecureRandom;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -144,14 +145,14 @@ public class MongoDBContainer extends org.testcontainers.containers.MongoDBConta
     /** Executes a mongo command in separate database. */
     public String executeCommandInSeparateDatabase(String command, String baseName) {
         return executeCommandInDatabase(
-                command, baseName + "_" + Integer.toUnsignedString(new Random().nextInt(), 36));
+                command, baseName + "_" + Integer.toUnsignedString(new SecureRandom().nextInt(), 36));
     }
 
     /** Executes a mongo command file in separate database. */
     public String executeCommandFileInSeparateDatabase(String fileNameIgnoreSuffix) {
         return executeCommandFileInDatabase(
                 fileNameIgnoreSuffix,
-                fileNameIgnoreSuffix + "_" + Integer.toUnsignedString(new Random().nextInt(), 36));
+                fileNameIgnoreSuffix + "_" + Integer.toUnsignedString(new SecureRandom().nextInt(), 36));
     }
 
     /** Executes a mongo command file, specify a database name. */

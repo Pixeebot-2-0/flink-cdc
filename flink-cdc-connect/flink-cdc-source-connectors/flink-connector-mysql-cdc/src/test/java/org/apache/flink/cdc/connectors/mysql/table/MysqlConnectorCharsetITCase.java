@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mysql.table;
 
+import java.security.SecureRandom;
 import org.apache.flink.cdc.connectors.mysql.source.MySqlSourceTestBase;
 import org.apache.flink.cdc.connectors.mysql.testutils.UniqueDatabase;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -392,7 +393,7 @@ public class MysqlConnectorCharsetITCase extends MySqlSourceTestBase {
     }
 
     private String getServerId() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int serverId = random.nextInt(100) + 5400;
         return serverId + "-" + (serverId + env.getParallelism());
     }

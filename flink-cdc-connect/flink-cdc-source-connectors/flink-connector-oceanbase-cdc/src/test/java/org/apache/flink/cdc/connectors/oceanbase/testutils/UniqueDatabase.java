@@ -20,6 +20,7 @@ package org.apache.flink.cdc.connectors.oceanbase.testutils;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -56,7 +57,7 @@ public class UniqueDatabase {
     private final String templateName;
 
     public UniqueDatabase(OceanBaseContainer container, String databaseName) {
-        this(container, databaseName, Integer.toUnsignedString(new Random().nextInt(), 36));
+        this(container, databaseName, Integer.toUnsignedString(new SecureRandom().nextInt(), 36));
     }
 
     private UniqueDatabase(

@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mysql.testutils;
 
+import java.security.SecureRandom;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.cdc.common.event.CreateTableEvent;
 
@@ -58,7 +59,7 @@ public class MySqSourceTestUtils {
     }
 
     public static String getServerId(int parallelism) {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int serverId = random.nextInt(100) + 5400;
         return serverId + "-" + (serverId + parallelism);
     }

@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mongodb.source;
 
+import java.security.SecureRandom;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.cdc.connectors.mongodb.utils.MongoDBAssertUtils;
 import org.apache.flink.cdc.connectors.mongodb.utils.MongoDBTestUtils;
@@ -87,7 +88,7 @@ public class NewlyAddedTableITCase extends MongoDBSourceTestBase {
 
     @Before
     public void before() throws SQLException {
-        customerDatabase = "customer_" + Integer.toUnsignedString(new Random().nextInt(), 36);
+        customerDatabase = "customer_" + Integer.toUnsignedString(new SecureRandom().nextInt(), 36);
         TestValuesTableFactory.clearAllData();
         // prepare initial data for given collection
         String collectionName = "produce_changelog";

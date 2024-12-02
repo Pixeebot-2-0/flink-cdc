@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.postgres;
 
+import java.security.SecureRandom;
 import org.apache.flink.cdc.connectors.postgres.source.PostgresConnectionPoolFactory;
 import org.apache.flink.cdc.connectors.postgres.source.config.PostgresSourceConfigFactory;
 import org.apache.flink.cdc.connectors.postgres.testutils.UniqueDatabase;
@@ -119,7 +120,7 @@ public abstract class PostgresTestBase extends AbstractTestBase {
     }
 
     public static String getSlotName() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int id = random.nextInt(10000);
         return "flink_" + id;
     }
