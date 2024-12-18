@@ -17,6 +17,8 @@
 
 package org.apache.flink.cdc.composer.utils;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.flink.cdc.common.annotation.Internal;
 import org.apache.flink.cdc.common.factories.Factory;
 
@@ -100,7 +102,7 @@ public class FactoryDiscoveryUtils {
             if (urlString.startsWith("local:///opt/flink/usrlib/")) {
                 return Optional.empty();
             }
-            url = new URL(urlString);
+            url = Urls.create(urlString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             if (Files.isDirectory(Paths.get(url.toURI()))) {
                 LOG.warn(
                         "The factory class \"{}\" is contained by directory \"{}\" instead of JAR. "
