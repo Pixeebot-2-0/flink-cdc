@@ -152,7 +152,7 @@ public class MySqlValidator implements Validator {
                                     return BINLOG_FORMAT_IMAGE_FULL;
                                 })
                         .toUpperCase();
-        if (!rowImage.equals(BINLOG_FORMAT_IMAGE_FULL)) {
+        if (!BINLOG_FORMAT_IMAGE_FULL.equals(rowImage)) {
             throw new ValidationException(
                     String.format(
                             "The MySQL server is configured with binlog_row_image %s rather than %s, which is "
