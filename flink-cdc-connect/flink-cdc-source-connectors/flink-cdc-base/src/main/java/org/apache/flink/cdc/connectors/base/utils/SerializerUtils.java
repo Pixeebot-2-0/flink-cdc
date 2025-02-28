@@ -20,6 +20,7 @@ package org.apache.flink.cdc.connectors.base.utils;
 import io.debezium.DebeziumException;
 import io.debezium.relational.TableId;
 import io.debezium.util.HexConverter;
+import io.github.pixee.security.ObjectInputFilters;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -58,6 +59,7 @@ public class SerializerUtils {
         try (final ByteArrayInputStream bis =
                         new ByteArrayInputStream(HexConverter.convertFromHex(serialized));
                 ObjectInputStream ois = new ObjectInputStream(bis)) {
+            ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
             return (Object[]) ois.readObject();
         } catch (Exception e) {
             throw new DebeziumException(
@@ -71,6 +73,7 @@ public class SerializerUtils {
         try (final ByteArrayInputStream bis =
                         new ByteArrayInputStream(HexConverter.convertFromHex(serialized));
                 ObjectInputStream ois = new ObjectInputStream(bis)) {
+            ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
             return ois.readObject();
         } catch (Exception e) {
             throw new DebeziumException(
