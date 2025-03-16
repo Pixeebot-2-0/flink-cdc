@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.postgres.testutils;
 
+import java.security.SecureRandom;
 import org.apache.flink.cdc.connectors.postgres.PostgresTestBase;
 
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -67,7 +68,7 @@ public class UniqueDatabase {
                 container,
                 databaseName,
                 schemaName,
-                Integer.toUnsignedString(new Random().nextInt(), 36),
+                Integer.toUnsignedString(new SecureRandom().nextInt(), 36),
                 username,
                 password);
     }

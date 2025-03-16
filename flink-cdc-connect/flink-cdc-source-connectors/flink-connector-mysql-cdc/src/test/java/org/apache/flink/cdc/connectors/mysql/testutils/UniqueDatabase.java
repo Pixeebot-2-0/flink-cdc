@@ -20,6 +20,7 @@ package org.apache.flink.cdc.connectors.mysql.testutils;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -61,7 +62,7 @@ public class UniqueDatabase {
         this(
                 container,
                 databaseName,
-                Integer.toUnsignedString(new Random().nextInt(), 36),
+                Integer.toUnsignedString(new SecureRandom().nextInt(), 36),
                 username,
                 password);
     }

@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.tests;
 
+import java.security.SecureRandom;
 import org.apache.flink.cdc.common.test.utils.JdbcProxy;
 import org.apache.flink.cdc.common.test.utils.TestUtils;
 import org.apache.flink.cdc.connectors.mongodb.utils.MongoDBContainer;
@@ -145,7 +146,7 @@ public class MongoE2eITCase extends FlinkContainerTestEnvironment {
         String dbName =
                 container.executeCommandFileInDatabase(
                         "mongo_inventory",
-                        "inventory" + Integer.toUnsignedString(new Random().nextInt(), 36));
+                        "inventory" + Integer.toUnsignedString(new SecureRandom().nextInt(), 36));
 
         container.executeCommandInDatabase(
                 "db.runCommand({ collMod: 'products', changeStreamPreAndPostImages: { enabled: true } })",

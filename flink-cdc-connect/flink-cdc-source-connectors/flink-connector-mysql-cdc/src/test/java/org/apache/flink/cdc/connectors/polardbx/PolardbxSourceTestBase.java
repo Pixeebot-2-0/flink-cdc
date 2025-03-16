@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.polardbx;
 
+import java.security.SecureRandom;
 import org.apache.flink.table.planner.factories.TestValuesTableFactory;
 import org.apache.flink.test.util.AbstractTestBase;
 import org.apache.flink.types.Row;
@@ -181,7 +182,7 @@ public abstract class PolardbxSourceTestBase extends AbstractTestBase {
     }
 
     protected String getServerId() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int serverId = random.nextInt(100) + 5400;
         return serverId + "-" + (serverId + 4);
     }

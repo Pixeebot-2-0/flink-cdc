@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mysql.table;
 
+import java.security.SecureRandom;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.time.Deadline;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -2262,7 +2263,7 @@ public class MySqlConnectorITCase extends MySqlSourceTestBase {
     // ------------------------------------------------------------------------------------
 
     private String getServerId() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int serverId = random.nextInt(100) + 5400;
         if (incrementalSnapshot) {
             return serverId + "-" + (serverId + env.getParallelism());
