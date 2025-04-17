@@ -630,9 +630,9 @@ public class MySqlStreamingChangeEventSource
             LOGGER.debug("DDL '{}' was filtered out of processing", sql);
             return;
         }
-        if (upperCasedStatementBegin.equals("INSERT ")
-                || upperCasedStatementBegin.equals("UPDATE ")
-                || upperCasedStatementBegin.equals("DELETE ")) {
+        if ("INSERT ".equals(upperCasedStatementBegin)
+                || "UPDATE ".equals(upperCasedStatementBegin)
+                || "DELETE ".equals(upperCasedStatementBegin)) {
             LOGGER.warn(
                     "Received DML '"
                             + sql

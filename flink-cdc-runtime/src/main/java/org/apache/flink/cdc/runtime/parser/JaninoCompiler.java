@@ -314,7 +314,7 @@ public class JaninoCompiler {
             Java.Rvalue[] atoms,
             List<UserDefinedFunctionDescriptor> udfDescriptors) {
         String operationName = sqlBasicCall.getOperator().getName().toUpperCase();
-        if (operationName.equals("IF")) {
+        if ("IF".equals(operationName)) {
             if (atoms.length == 3) {
                 return new Java.ConditionalExpression(
                         Location.NOWHERE, atoms[0], atoms[1], atoms[2]);
