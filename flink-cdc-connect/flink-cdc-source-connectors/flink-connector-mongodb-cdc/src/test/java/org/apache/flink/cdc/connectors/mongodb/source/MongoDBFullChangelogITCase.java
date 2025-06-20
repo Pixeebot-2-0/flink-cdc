@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mongodb.source;
 
+import java.security.SecureRandom;
 import org.apache.flink.api.common.JobID;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
@@ -504,7 +505,7 @@ public class MongoDBFullChangelogITCase extends MongoDBSourceTestBase {
             throws Exception {
 
         String customerDatabase =
-                "customer_" + Integer.toUnsignedString(new Random().nextInt(), 36);
+                "customer_" + Integer.toUnsignedString(new SecureRandom().nextInt(), 36);
 
         // A - enable system-level fulldoc pre & post image feature
         mongoContainer.executeCommand(
@@ -618,7 +619,7 @@ public class MongoDBFullChangelogITCase extends MongoDBSourceTestBase {
             throws Exception {
 
         String customerDatabase =
-                "customer_" + Integer.toUnsignedString(new Random().nextInt(), 36);
+                "customer_" + Integer.toUnsignedString(new SecureRandom().nextInt(), 36);
 
         // A - enable system-level fulldoc pre & post image feature
         mongoContainer.executeCommand(

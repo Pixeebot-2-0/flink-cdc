@@ -17,6 +17,7 @@
 
 package org.apache.flink.cdc.connectors.mysql.table;
 
+import java.security.SecureRandom;
 import org.apache.flink.cdc.connectors.mysql.MySqlValidatorTest;
 import org.apache.flink.cdc.connectors.mysql.testutils.MySqlContainer;
 import org.apache.flink.cdc.connectors.mysql.testutils.MySqlVersion;
@@ -224,7 +225,7 @@ public class MySqlCompatibilityITCase {
     }
 
     private String getServerId() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int serverId = random.nextInt(100) + 5400;
         return serverId + "-" + (serverId + env.getParallelism());
     }
